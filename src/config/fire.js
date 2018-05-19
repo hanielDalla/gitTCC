@@ -13,10 +13,12 @@ const fire = firebase.initializeApp(config);
 
 const base = Rebase.createClass( fire.database() )
 
+var storageRef = firebase.storage().ref();
+
 // const database = firebase.database().ref()
 
 // const addDatabase = ( pasta, objeto ) => {
 //   database.child( pasta ).push( objeto )
 // }
 
-export {base, fire};
+export {base, fire, storageRef};

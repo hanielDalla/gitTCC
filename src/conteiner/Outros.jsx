@@ -8,9 +8,9 @@ class Outros extends Component{
             <div>
                 <div className="imgplace">
                     <img className="logo" src={NovaApp} alt="Imagem do Produto"/>
-                    <Link to='/denuncie' className="btn btn-secondary edit" style={{marginTop: '15px'}}>>Denuncie</Link>
-                    <Link to='/sobrenos' className="btn btn-secondary edit" style={{marginTop: '15px'}}>>Sobre Nós</Link>
-                    <Link to='/futuro' className="btn btn-secondary edit" style={{marginTop: '15px'}}>>Implementações Futuras</Link>
+                    <Link to='/denuncie' className="btn btn-secondary edit botao" style={{marginTop: '15px'}}>Denuncie</Link>
+                    <Link to='/sobrenos' className="btn btn-secondary edit botao" style={{marginTop: '15px'}}>Sobre Nós</Link>
+                    <Link to='/futuro' className="btn btn-secondary edit botao" style={{marginTop: '15px'}}>Implementações Futuras</Link>
                 </div>
             </div>
         );

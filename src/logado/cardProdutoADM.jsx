@@ -6,7 +6,7 @@ const CardProdutoADM = (props) =>{
         <div className="col-12 col-sm-4">
             <div className="card">
             <div className="card-body">
-                {/* <img className="imagemLoja" src={props.imgLoja} alt="Imagem do Produto"/> */}
+                <img className="imagemLoja" src={props.imgLoja} alt="Imagem do Produto"/>
                     <Link className="trataLink card-title" to="/loja" >{props.loja}</Link> 
 
             </div>
