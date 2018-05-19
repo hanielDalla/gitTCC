@@ -1,0 +1,118 @@
+/*<Links>*/
+
+a:link {
+    color:#000000;
+    text-decoration:none;
+    }
+a:visited {
+    color:#000000;
+    text-decoration:none;
+    }
+a:hover {
+    color:#000000;
+    text-decoration:underline;
+    }
+a:active {
+    color:#FFFFFF;
+    text-decoration:underline;
+    background-color:#000000;
+    }
+
+/* <NavDown> */
+
+a.edit:link {
+    color:#FFFFFF
+    }
+a.edit:visited {
+    color:#ffffff;
+    text-decoration:none;
+    }    
+
+a.edit:hover {
+    color:rgb(122, 122, 122);
+    text-decoration:underline ;
+    }
+a.edit:active {
+    color:#FFFFFF;
+    text-decoration:none;
+    background-color:#000000;
+    }    
+/*</NavDown>*/
+/*</Links>*/
+
+.teste{
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding-top: 7px;
+}
+.gridiar{
+    display: inline-grid;
+    grid-template-columns: 33.3vw 33.3vw 33.3vw;
+    justify-content: space-around;
+}
+.nav-item{
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.rexpeita{
+    padding: .5rem 0;
+}
+.imagemLoja2{
+    padding-top: 5px;
+    height: 200px;
+    width: auto;
+}
+.imagemLoja{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+trataLink{
+    color: white;
+    text-decoration-color: #28a745
+}
+.descricao{
+    color:#0087ff
+}
+.navTop{
+    display: flex;
+    flex-wrap: wrap;
+    padding: .3rem 0.7rem;
+}
+.imgLoja2-0{
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    top: 50%; 
+    left: 30%;
+    border-radius: 50%;
+}
+
+.botoes {
+    text-align: center!important;
+    margin-top: 5px;
+}
+
+.botao{
+    width: 250px;
+}
+.login{
+    margin: 5vh 15vh;
+    padding : 5vh 20vh;
+}
+.imgplace{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    padding: 0;
+    margin:0;
+    flex-direction: column;
+}
+
+.logo{
+    height: 325px;
+    width: 325px;
+}
