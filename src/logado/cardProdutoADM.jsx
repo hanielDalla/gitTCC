@@ -3,14 +3,14 @@ import {Link} from 'react-router';
 
 const CardProdutoADM = (props) =>{
     return(
-        <div className="col-12 col-sm-4">
+        <div key={props.key} className="col-12 col-sm-4">
             <div className="card">
             <div className="card-body">
                 <img className="imagemLoja" src={props.imgLoja} alt="Imagem do Produto"/>
                     <Link className="trataLink card-title" to="/loja" >{props.loja}</Link> 
 
             </div>
-            {/* <img className="card-img-bottom" style={{height: '250px',  width: '1fr'}} src={props.imgProduto} alt="Imagem do Produto"/> */}
+            <img className="card-img-bottom" style={{height: '250px',  width: '1fr'}} src={props.imgProduto} alt="Imagem do Produto"/>
             <div className="card-body">
                 <h5 className="card-title">{props.nome}</h5>
                 <h5 className="tipo">{props.tipo}</h5>

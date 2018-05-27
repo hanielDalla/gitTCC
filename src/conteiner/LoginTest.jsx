@@ -9,14 +9,8 @@ class LoginTest extends Component {
         this.state = ({
           user: null,
         });
-        this.authListener = this.authListener.bind(this);
       }
       componentDidMount() {
-        this.authListener();
-      }
-      
-      
-    authListener() {
         fire.auth().onAuthStateChanged((user) => {
           if (user) {
             this.setState({ user });
@@ -24,7 +18,8 @@ class LoginTest extends Component {
           } else {
             this.setState({ user: null });
           }
-        })}    
+        })
+      } 
         
     render() {
         return (

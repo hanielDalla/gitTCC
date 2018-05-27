@@ -13,7 +13,7 @@ const fire = firebase.initializeApp(config);
 
 const base = Rebase.createClass( fire.database() )
 
-var storageRef = firebase.storage().ref();
+var storageRef = firebase.storage()
 
 // const database = firebase.database().ref()
 
