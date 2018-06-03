@@ -8,7 +8,6 @@ import Login from './conteiner/Login'
 import Cadastrar from './conteiner/Cadastrar';
 import Home from './conteiner/Home';
 import Outros from './conteiner/Outros'
-import Produto from './ui/Produto'
 import LoginTest from './conteiner/LoginTest'
 import MinhaLoja from './logado/MinhaLoja'
 import NovoProduto from './logado/NovoProduto'
@@ -23,7 +22,6 @@ ReactDOM.render(
 <Router history={hashHistory}>
     <Route path="/" component={App}>
         <IndexRoute component={Home}/>
-        <Route path='/produto' component={Produto}/>
         <Route path='/login' component={Login} />
         <Route path='/outros' component={Outros}/>
         <Route path='/sobrenos' component={SobreNos}/>

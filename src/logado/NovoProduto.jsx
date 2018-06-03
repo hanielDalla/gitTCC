@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { base, fire } from '../config/fire'
-import LoginTest from '../conteiner/LoginTest'
 import firebase from 'firebase'
 
 class NovoProduto extends Component {
@@ -8,28 +7,23 @@ class NovoProduto extends Component {
 
     super(props);
     this.state = {
-      user: LoginTest.uid,
-      Produtos: {},
-      Loja: [],
-      key: null,
+      Produtos: [],
+      loja: [],
       uploadValue: 0,  
       picture: null
     }
 
     this.handleSave = this.handleSave.bind(this)
-    this.handleUpload = this.handleUpload.bind(this)
+    this.handleUpload = this.handleUpload.bind(this);
   }
 
-  componentDidMount() {
-    base.syncState('Produtos', {
-      context: this,
-      state: 'Produtos',
-      asArray: false
-    })
-  }
   handleUpload (event) {
+    var user = fire.auth().currentUser;
+    if (user != null) {
+    var uid = user.uid;
+    }
     const file = event.target.files[0];
-    const storageRef = firebase.storage().ref(`/Produtos/${file.name}`);
+    const storageRef = firebase.storage().ref('/Produtos/' + uid + `/${file.name}`);
     const task = storageRef.put(file);
 
     task.on('state_changed', snapshot => {
@@ -43,23 +37,41 @@ class NovoProduto extends Component {
             uploadValue:100,
             picture: task.snapshot.downloadURL
         });
-    });}
+    })}
+
+  componentDidMount() {
+    var user = fire.auth().currentUser;
+    if (user != null) {
+    var uid = user.uid;
+    }
+    base.syncState('Produtos', {
+      context: this,
+      state: 'Produtos',
+      asArray: false
+    })
+    base.syncState('Loja/' + uid, {
+      context: this,
+      state: 'loja',
+      asArray: false
+    })
+  }
+  
 
   handleSave(event) {
     event.preventDefault()
     var user = fire.auth().currentUser;
-    var uid;
-    var kk;
     if (user != null) {
-      uid = user.uid;
+    var uid = user.uid;
     }
     const nome = this.nome.value
     const tipo = this.tipo.value
     const descricao = this.descricao.value
     const preco = this.preco.value
     const ativacao = true /*this.ativacao.checked ? true : false*/
-    const loja = uid
+    const imgLoja = this.state.loja.imgLoja
+    const nomeLoja = this.state.loja["Nome"]
     const validade = this.validade.value
+    const imgProd = this.state.picture
 
     base.syncState('Loja/' + uid, {
       context: this,
@@ -67,59 +79,51 @@ class NovoProduto extends Component {
       asArray: true
     })
 
-    this.state.key ?
-      base.update('Produtos/' + this.state.key, {
+    base.push('Produtos', {
         data: {
           nome,
           tipo,
           descricao,
           preco,
           ativacao,
-          loja,
-          validade
-        }
-      }).then(() => {
-        this.setState({
-          key: null
-        })
-      }).catch(error => {
-        console.log(error)
-      })
-      :
-      kk = base.push('Produtos', {
-        data: {
-          nome,
-          tipo,
-          descricao,
-          preco,
-          ativacao,
-          loja,
-          validade
+          nomeLoja,
+          validade,
+          imgProd,
+          imgLoja
         }
       }).catch(error => {
         console.log(error)
       })
-    console.log('kk =' + kk)
-    base.push('Loja/' + uid + '/Produtos', {
-      data: this.state.key
-    }).catch(error => {
-      console.log(error)
-    })
+
     this.nome.value = ''
-    this.tipo.value = ''
     this.descricao.value = ''
     this.preco.value = ''
-    this.nome.focus()
+    this.tipo.value = 0
+    this.file.value = null
+    this.imgProd = ''
+    this.setState({
+      picture: null,
+      uploadValue: ''
+    })
   }
   render() {
     return (
-
       <div>
         <form onSubmit={this.handleSave}>
           <div className="form-group">
             <label htmlFor="nomeProd">Nome do Produto*</label>
             <input ref={ref => this.nome = ref} type="text" required="true" className="form-control" id="nomeProd" placeholder="Ex: Pizza" />
           </div>
+
+          <div className="form-group">
+                <label htmlFor="nomeProd">Imagem do Produto*</label>
+                <input ref={ref => this.file = ref} id="file" type="file" className="form-control-file" onChange={this.handleUpload}/>
+                <br/>
+                <progress value={this.state.uploadValue} max="100" ></progress>
+                <br/>
+                <img height="100" src={this.state.picture} alt=""/>
+          </div>
+
           <div className="form-group">
             <label htmlFor="tipo">Tipo de Produto*</label>
             <select ref={ref => this.tipo = ref} id="tipo" className="form-control">
@@ -137,15 +141,6 @@ class NovoProduto extends Component {
             </select>
           </div>
 
-
-          <div className="form-group">
-            <input type="file" className="form-control-file" onChange={this.handleUpload} />
-            <br />
-            <progress value={this.state.uploadValue} max="100" ></progress>
-            <br />
-            <img height="100" src={this.state.picture} alt="" />
-          </div>
-
           <div className="form-group">
             <label htmlFor="descricao">Descrição(Detalhe sua promoção)*</label>
             <input ref={ref => this.descricao = ref} type="text" required="true" className="form-control" id="descricao" placeholder="Ex: 15% de desconto" />
@@ -160,10 +155,6 @@ class NovoProduto extends Component {
             <label htmlFor="validade">Data de termino*</label>
             <input type="date" ref={ref => this.validade = ref} required="true" className="form-control" id="validade" />
           </div>
-
-          {/* <div className="form-group">
-                        <input type="checkbox" ref={ref => this.ativacao = ref} id="ativacao" /> ativado?<br/>
-                    </div> */}
 
           <br />
 

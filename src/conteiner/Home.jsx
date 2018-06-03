@@ -1,77 +1,92 @@
 import React, { Component } from 'react'
+import { base } from '../config/fire'
 import CardProduto from '../ui/CardProduto'
-import { hashHistory } from 'react-router';
-import imgLoja1 from '../arquivos/imagens/imgLoja.png';
-import imgLoja2 from '../arquivos/imagens/imgLoja2.jpg';
-import imgLoja3 from '../arquivos/imagens/imgLoja3.png';
-import imgProd1 from '../arquivos/imagens/imgProd.jpg';
-import imgProd2 from '../arquivos/imagens/imgProd2.jpg';
-import imgProd3 from '../arquivos/imagens/imgProd3.png';
-//import imgProd4 from '../arquivos/imagens/imgProd4.jpg';
-
+import {Link} from 'react-router'
 
 export default class Home extends Component {
-
-  cardPizzaFrita = {
-    imgLoja: imgLoja1,
-    loja: 'Pizza Frita',
-    imgProduto: imgProd1,
-    title: 'Pizza Frita',
-    text: '15% de desconto',
-    preco: 'R$: 99,99',
-    validade: '12/12/2017',
-    action: () => hashHistory.push('/produto')
+  constructor() {
+    super();
+    this.state = {
+      produto: [],
+      produtos: [],
+      produtos2: [],
+      produtos3: []
+    }
+    this.listItem = this.listItem.bind(this)
   }
 
-  cardEspetinhoDoJuninho = {
-    imgLoja: imgLoja2,
-    loja: 'Espetinhos do Juninho',
-    imgProduto: imgProd2,
-    title: 'Espetinho Suíno',
-    text: '10% de desconto',
-    preco: 'R$: 33,33',
-    validade: '12/12/2017',
-    action: () => hashHistory.push('/produto'),
+  componentDidMount() {
+    base.syncState('Produtos/', {
+      context: this,
+      state: 'produto',
+      asArray: false
+    })
+    // var key = "-LDwzaI3N1lxpHNZgcAH"
+    // base.syncState('Produtos/' + key, {
+    //   context: this,
+    //   state: 'produtos',
+    //   asArray: false
+    // })
+    // var key2 = "-LDwwjrCb60Wavr4xC_K"
+    // base.syncState('Produtos/' + key2, {
+    //   context: this,
+    //   state: 'produtos2',
+    //   asArray: false
+    // })
+    // var key3 = "-LDmfueXFZI9Vq_2Y7rN"
+    // base.syncState('Produtos/' + key3, {
+    //   context: this,
+    //   state: 'produtos3',
+    //   asArray: false
+    // })
   }
 
-  cardPizzariaDoAldonso = {
-    imgProduto: imgProd3,
-    loja: 'Pizzaria do Aldonso',
-    imgLoja: imgLoja3,
-    title: 'Combo Aldonso',
-    text: 'R$: 60,00 ',
-    preco: 'R$: 65,00',
-    validade: '12/12/2017',
-    action: () => hashHistory.push('/produto'),
-  }
+  listItem(key, produto){
+    return(
+    <div className="col-12 col-sm-4" key={key}>
+            <div className="card">
+            <div className="card-body">
+                <img className="imagemLoja" src={produto["imgLoja"]} alt="Imagem da Loja"/>
+                    <Link className="trataLink card-title" to="/loja" >{produto["nomeLoja"]}</Link>  
+            </div>
+            <img className="card-img-bottom" style={{height: '250px', width: '1fr'}} src={produto["imgProd"]} alt="Imagem do Produto"/>
+            <div className="card-body">
+                <h5 className="card-title" style={{fontWeight: 'bold'}}>{produto["nome"]}</h5>
+                {/* <h5 className="tipo">{props.tipo}</h5> */}
+                <p className="card-text verde">Por apenas: R$:{produto["preco"]}</p>
+                <p className="card-text"><small className="text-muted">Valido até: {produto["validade"]}</small></p>
+                <p>Descricão: </p>
+                <p>{produto["descricao"]}</p>
+                
+            </div>
+            </div>
+        </div>
+    )}
+
 
   render() {
     return (
-        <div className="conteiner text-center">
-          <div className="row">
-            <CardProduto title={this.cardPizzaFrita.title}
-              preco={this.cardPizzaFrita.preco}
-              action={this.cardPizzaFrita.action}
-              validade={this.cardPizzaFrita.validade}
-              loja={this.cardPizzaFrita.loja}
-              imgLoja={this.cardPizzaFrita.imgLoja}
-              imgProduto={this.cardPizzaFrita.imgProduto} />
-            <CardProduto {...this.cardEspetinhoDoJuninho} />
-            <CardProduto {...this.cardPizzariaDoAldonso} />
-          </div>
-          <div className="dropdown-divider"></div>
-          <div className="row">
-            <CardProduto {...this.cardPizzaFrita} />
-            <CardProduto {...this.cardEspetinhoDoJuninho} />
-            <CardProduto {...this.cardPizzariaDoAldonso} />
-          </div>
-          <div className="dropdown-divider"></div>
-          <div className="row">
-            <CardProduto {...this.cardPizzaFrita} />
-            <CardProduto {...this.cardEspetinhoDoJuninho} />
-            <CardProduto {...this.cardPizzariaDoAldonso} />
-          </div>
+      <div>
+        <div className="row">
+          {/* <CardProduto nome={this.state.produtos["nome"]}
+            tipo={this.state.produtos["tipo"]}
+            preco={this.state.produtos["preco"]}
+            descricao={this.state.produtos["descricao"]}
+            validade={this.state.produtos["validade"]}
+            nomeLoja={this.state.produtos["nomeLoja"]}
+            imgLoja={this.state.produtos["imgLoja"]}
+            imgProd={this.state.produtos["imgProd"]} />
+          <CardProduto {...this.state.produtos2}/>
+          <CardProduto {...this.state.produtos3}/> */}
+        {
+          Object
+            .keys(this.state.produto)
+            .map(posicaoVet => {
+                return this.listItem(posicaoVet, this.state.produto[posicaoVet])
+            })
+        }
         </div>
-        )
-      }
+      </div>
+    )
+  }
 }

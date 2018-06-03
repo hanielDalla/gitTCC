@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import imgLoja from '../arquivos/imagens/imgLoja.png'
+
 
 class Loja extends Component {
     render() {
@@ -7,7 +7,7 @@ class Loja extends Component {
             <div>
                 <div className="row media">
                     <div className="col">
-                        <img className="imgLoja2-0 align-self-center mr-3" src={imgLoja} alt="Imagem da loja" />
+                        <img className="imgLoja2-0 align-self-center mr-3" src="" alt="Imagem da loja" />
                     </div>
 
                     <div className="col-7">

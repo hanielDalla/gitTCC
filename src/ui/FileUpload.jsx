@@ -6,7 +6,6 @@ class FileUpload extends Component{
         super()
         this.state = {
             uploadValue: 0,  
-            picture: null
         }
         this.handleUpload = this.handleUpload.bind(this);
     }
@@ -14,7 +13,7 @@ class FileUpload extends Component{
         const file = event.target.files[0];
         const storageRef = firebase.storage().ref(`/Produtos/${file.name}`);
         const task = storageRef.put(file);
-
+    
         task.on('state_changed', snapshot => {
             let porcentagem = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             this.setState({
@@ -26,8 +25,7 @@ class FileUpload extends Component{
                 uploadValue:100,
                 picture: task.snapshot.downloadURL
             });
-        });
-    }
+        });}
     render(){
         return(
             <div>
