@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CardLojas from '../ui/CardLoja';
 import { base } from '../config/fire'
 
 class Lojas extends Component {
@@ -11,7 +10,7 @@ class Lojas extends Component {
       lojas2: [],
       loja:[]
     }
-    // this.listItem = this.listItem.bind(this)
+    this.listItem = this.listItem.bind(this)
   }
   componentDidMount() {
     base.syncState('Loja/', {
@@ -19,16 +18,6 @@ class Lojas extends Component {
       state: 'loja',
       asArray: false
     })
-    // base.syncState('Loja/097DTJHpECcLG2F3XFI4FDUYcxB3', {
-    //   context: this,
-    //   state: 'lojas',
-    //   asArray: false
-    // })
-    // base.syncState('Loja/h5qwrm7hzpYMC5BaPdbAK28QECL2', {
-    //   context: this,
-    //   state: 'lojas2',
-    //   asArray: false
-    // })
   }
 
   listItem(key, loja) {

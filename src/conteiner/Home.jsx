@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { base } from '../config/fire'
-import CardProduto from '../ui/CardProduto'
 import {Link} from 'react-router'
 
 export default class Home extends Component {
@@ -8,9 +7,6 @@ export default class Home extends Component {
     super();
     this.state = {
       produto: [],
-      produtos: [],
-      produtos2: [],
-      produtos3: []
     }
     this.listItem = this.listItem.bind(this)
   }
@@ -21,24 +17,6 @@ export default class Home extends Component {
       state: 'produto',
       asArray: false
     })
-    // var key = "-LDwzaI3N1lxpHNZgcAH"
-    // base.syncState('Produtos/' + key, {
-    //   context: this,
-    //   state: 'produtos',
-    //   asArray: false
-    // })
-    // var key2 = "-LDwwjrCb60Wavr4xC_K"
-    // base.syncState('Produtos/' + key2, {
-    //   context: this,
-    //   state: 'produtos2',
-    //   asArray: false
-    // })
-    // var key3 = "-LDmfueXFZI9Vq_2Y7rN"
-    // base.syncState('Produtos/' + key3, {
-    //   context: this,
-    //   state: 'produtos3',
-    //   asArray: false
-    // })
   }
 
   listItem(key, produto){
@@ -82,7 +60,9 @@ export default class Home extends Component {
           Object
             .keys(this.state.produto)
             .map(posicaoVet => {
+              if (this.state.produto[posicaoVet].ativacao === true) {
                 return this.listItem(posicaoVet, this.state.produto[posicaoVet])
+              }else return ""
             })
         }
         </div>
