@@ -86,10 +86,10 @@ class NovoProduto extends Component {
           descricao,
           preco,
           ativacao,
+          imgLoja,
           nomeLoja,
           validade,
           imgProd,
-          imgLoja
         }
       }).catch(error => {
         console.log(error)
@@ -142,7 +142,7 @@ class NovoProduto extends Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="descricao">Descrição(Detalhe sua promoção)*</label>
+            <label htmlFor="descricao">Descrição(Detalhe seu produto)*</label>
             <input ref={ref => this.descricao = ref} type="text" required="true" className="form-control" id="descricao" placeholder="Ex: 15% de desconto" />
           </div>
 

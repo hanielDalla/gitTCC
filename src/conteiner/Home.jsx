@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { base } from '../config/fire'
 import {Link} from 'react-router'
 
+
 export default class Home extends Component {
   constructor() {
     super();
@@ -30,11 +31,10 @@ export default class Home extends Component {
             <img className="card-img-bottom" style={{height: '250px', width: '1fr'}} src={produto["imgProd"]} alt="Imagem do Produto"/>
             <div className="card-body">
                 <h5 className="card-title" style={{fontWeight: 'bold'}}>{produto["nome"]}</h5>
-                {/* <h5 className="tipo">{props.tipo}</h5> */}
-                <p className="card-text verde">Por apenas: R$:{produto["preco"]}</p>
-                <p className="card-text"><small className="text-muted">Valido até: {produto["validade"]}</small></p>
-                <p>Descricão: </p>
-                <p>{produto["descricao"]}</p>
+                
+                <p>Descricão: {produto["descricao"]}</p>
+                {produto["preco"] ? <p className="card-text verde right" style={{fontWeight: 'bold'}}>R$ {produto["preco"]}</p> : ""}
+                <p className="card-text right"><small className="text-muted">Valido até: {produto["validade"]}</small></p>
                 
             </div>
             </div>
@@ -45,17 +45,9 @@ export default class Home extends Component {
   render() {
     return (
       <div>
+        
         <div className="row">
-          {/* <CardProduto nome={this.state.produtos["nome"]}
-            tipo={this.state.produtos["tipo"]}
-            preco={this.state.produtos["preco"]}
-            descricao={this.state.produtos["descricao"]}
-            validade={this.state.produtos["validade"]}
-            nomeLoja={this.state.produtos["nomeLoja"]}
-            imgLoja={this.state.produtos["imgLoja"]}
-            imgProd={this.state.produtos["imgProd"]} />
-          <CardProduto {...this.state.produtos2}/>
-          <CardProduto {...this.state.produtos3}/> */}
+        
         {
           Object
             .keys(this.state.produto)

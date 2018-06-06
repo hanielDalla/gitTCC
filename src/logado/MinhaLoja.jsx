@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { base } from '../config/fire'
 import { Link } from 'react-router';
 import { fire } from '../config/fire'
+import excluir from '../arquivos/imagens/Excluir.ico'
 
 
 class MinhaLoja extends Component {
@@ -14,7 +15,7 @@ class MinhaLoja extends Component {
     }
     this.listItem = this.listItem.bind(this)
     this.ativacao = this.ativacao.bind(this)
-    this.handleRemove = this.handleRemove.bind(this)
+    this.remover = this.remover.bind(this)
   }
 
   componentDidMount() {
@@ -35,18 +36,22 @@ class MinhaLoja extends Component {
       asArray: false
     })
   }
-  handleRemove(key) {
-    base.remove('proprietarios/' + this.state.proprietarios[key].key)
+
+
+
+  remover(key) {
+    base.remove('Produtos/' + key)
       .then(() => {
-        console.log('Sucesso')
+        console.log('Apagado com sucesso')
       })
       .catch((error) => {
         console.log(error)
       })
   }
+
   ativacao(key, produto) {
     if (produto.ativacao === false) {
-      base.update('Produto/' + key, {
+      base.update('Produtos/' + key, {
         data: {
           ativacao: true
         }
@@ -55,7 +60,7 @@ class MinhaLoja extends Component {
           console.log(error)
         })
     } else {
-      base.update('Produto/' + key, {
+      base.update('Produtos/' + key, {
         data: {
           ativacao: false
         }
@@ -63,7 +68,6 @@ class MinhaLoja extends Component {
         .catch(error => {
           console.log(error)
         })
-
     }
 
   }
@@ -75,12 +79,23 @@ class MinhaLoja extends Component {
     return (
       <div className="col-12 col-sm-4" key={key}>
         <div className="card">
-          <div className="admPart">
-            <h4>Parte administrativa</h4>
-            <button onClick={() => this.handleRemove(key)}>Excluir</button>
-            <button onClick="">Editar</button>
-            <button onClick={this.ativacao(key, produto)}>{produto["ativacao"] ? "Desativar" : "Ativar"}</button>
+        <div className="admPart">
+
+          <div className="dropdown">
+            <button className="btn btn-light dropdown-toggle 100%" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gerenciar</button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div className='delete-button' onClick={() => { if (window.confirm('Tem certeza que deseja excluir esta promoção?')) this.remover(key) } } >
+            <button type="button" data-toggle="modal" className="dropdown-item" data-target="#confirm">Excluir</button>
+            </div>
+              <button type="button" className="dropdown-item">Editar</button>
+              <button className="dropdown-item" onClick={() => this.ativacao(key, produto)}>{produto["ativacao"] ? "Desativar" : "Ativar"}</button>
+            </div>
           </div>
+
+          </div>
+
+
+
           <div className="card-body">
             <img className="imagemLoja" src={produto["imgLoja"]} alt="Imagem da Loja" />
             <Link className="trataLink card-title" to="/loja" >{produto["nomeLoja"]}</Link>
@@ -89,9 +104,8 @@ class MinhaLoja extends Component {
           <div className="card-body">
             <h5 className="card-title" style={{ fontWeight: 'bold' }}>{produto["nome"]}</h5>
             {produto["preco"] ? <p className="card-text verde">Por apenas: R$:{produto["preco"]}</p> : ""}
-            <p className="card-text"><small className="text-muted">Valido até: {produto["validade"]}</small></p>
             <p>Descricão: {produto["descricao"]}</p>
-
+            <p className="card-text right"><small className="text-muted">Valido até: {produto["validade"]}</small></p>
           </div>
         </div>
       </div>
@@ -103,7 +117,6 @@ class MinhaLoja extends Component {
     return (
       <div>
 
-        {/* {this.state.teste = this.state.loja["teste"]} */}
         <div className="row media">
           <div className="col-5">
             <img className="imgLoja2-0 align-self-center mr-3" src={this.state.loja["imgLoja"]} alt="Imagem da loja" />
@@ -111,7 +124,7 @@ class MinhaLoja extends Component {
 
           <div className="col-5">
             <h1 className="card-title">{this.state.loja["Nome"]}</h1>
-            <h5 className="card-text">{this.state.loja["Endereço"]}</h5>
+            <h5 className="card-text">{this.state.loja["Endereco"]}</h5>
             <h5 className="card-text">{this.state.loja["Email"]}</h5>
             <button onClick={this.logout}>Sair</button>
           </div>
@@ -127,13 +140,17 @@ class MinhaLoja extends Component {
         <div className="conteiner text-center">
           <div className="row">
             {
+
               Object
                 .keys(this.state.produto)
 
                 .map(posicaoVet => {
-                  if (this.state.produto[posicaoVet].ativacao === true) {
-                    return this.listItem(posicaoVet, this.state.produto[posicaoVet])
-                  } else return ""
+                  if (this.state.produto[posicaoVet].nomeLoja === this.state.loja.Nome) {
+                    if (this.state.produto[posicaoVet].ativacao === true) {
+                      return this.listItem(posicaoVet, this.state.produto[posicaoVet])
+                    } else return ""
+                  }else return ""
+
                 })
             }
           </div>
@@ -148,8 +165,10 @@ class MinhaLoja extends Component {
               .keys(this.state.produto)
 
               .map(posicaoVet => {
-                if (this.state.produto[posicaoVet].ativacao === false) {
-                  return this.listItem(posicaoVet, this.state.produto[posicaoVet])
+                if (this.state.produto[posicaoVet].nomeLoja === this.state.loja.Nome) {
+                  if (this.state.produto[posicaoVet].ativacao === false) {
+                    return this.listItem(posicaoVet, this.state.produto[posicaoVet])
+                  } else return ""
                 } else return ""
               })
           }
