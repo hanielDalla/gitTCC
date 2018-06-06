@@ -26,14 +26,14 @@ export default class Home extends Component {
             <div className="card">
             <div className="card-body">
                 <img className="imagemLoja" src={produto["imgLoja"]} alt="Imagem da Loja"/>
-                    <Link className="trataLink card-title" to="/loja" >{produto["nomeLoja"]}</Link>  
+                    <Link className="trataLink card-title" to={`/loja/${produto["loja"]}`} >{produto["nomeLoja"]}</Link>  
             </div>
             <img className="card-img-bottom" style={{height: '250px', width: '1fr'}} src={produto["imgProd"]} alt="Imagem do Produto"/>
             <div className="card-body">
                 <h5 className="card-title" style={{fontWeight: 'bold'}}>{produto["nome"]}</h5>
                 
                 <p>Descricão: {produto["descricao"]}</p>
-                {produto["preco"] ? <p className="card-text verde right" style={{fontWeight: 'bold'}}>R$ {produto["preco"]}</p> : ""}
+                {produto["preco"] ? <p className="card-text verde right" style={{ fontWeight: 'bold' }}>R$ {produto["preco"]}</p> : ""}
                 <p className="card-text right"><small className="text-muted">Valido até: {produto["validade"]}</small></p>
                 
             </div>

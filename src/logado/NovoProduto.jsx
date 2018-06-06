@@ -67,11 +67,12 @@ class NovoProduto extends Component {
     const tipo = this.tipo.value
     const descricao = this.descricao.value
     const preco = this.preco.value
-    const ativacao = true /*this.ativacao.checked ? true : false*/
+    const ativacao = true
     const imgLoja = this.state.loja.imgLoja
     const nomeLoja = this.state.loja["Nome"]
     const validade = this.validade.value
     const imgProd = this.state.picture
+    const loja = uid
 
     base.syncState('Loja/' + uid, {
       context: this,
@@ -85,6 +86,7 @@ class NovoProduto extends Component {
           tipo,
           descricao,
           preco,
+          loja,
           ativacao,
           imgLoja,
           nomeLoja,
