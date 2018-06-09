@@ -18,17 +18,17 @@ class Loja extends Component {
         this.setState({
             isLoadding: true
         })
-        // base.fetch(`Loja/${this.props.match.params.id}`, { 
-        //     context: this,
-        //     state: 'loja',
-        //     asArray: false,
-        //     then( data ) {
-        //       this.setState({
-        //         loja: data,
-        //         isLoadding: false
-        //       })
-        //     }
-        //   })
+        base.fetch(`Loja/${this.props.match.params.id}`, { 
+            context: this,
+            state: 'loja',
+            asArray: false,
+            then( data ) {
+              this.setState({
+                loja: data,
+                isLoadding: false
+              })
+            }
+          })
         base.syncState('Produtos/', {
             context: this,
             state: 'produto',
@@ -82,7 +82,7 @@ class Loja extends Component {
                 <br />
                 <p className="center">Produtos ativos</p>
                 <br />
-                <div className="row">
+                <div className="card-deck">
 
                     {
 

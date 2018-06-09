@@ -15,10 +15,5 @@ const base = Rebase.createClass( fire.database() )
 
 var storageRef = firebase.storage()
 
-// const database = firebase.database().ref()
-
-// const addDatabase = ( pasta, objeto ) => {
-//   database.child( pasta ).push( objeto )
-// }
 
 export {base, fire, storageRef};

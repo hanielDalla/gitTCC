@@ -31,7 +31,9 @@ class Login extends Component {
         return (
             <div>
                 <div className="login">
-                    <h2>Entre com seus Dados</h2>
+                <br/>
+                    <h3>Entre com seus Dados</h3>
+                    <br/>
                     <form>
                         <div className="form-group">
                             <input value={this.state.email} onChange={this.handleChange} className="form-control" type="email" placeholder="Endereço de Email"  name="email" required></input>

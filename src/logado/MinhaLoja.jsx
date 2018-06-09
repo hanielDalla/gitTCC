@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { base } from '../config/fire'
 import { Link } from 'react-router';
 import { fire } from '../config/fire'
+import sair from '../arquivos/imagens/logout.png'
 // import excluir from '../arquivos/imagens/Excluir.ico'
 
 
@@ -79,39 +80,33 @@ class MinhaLoja extends Component {
     return (
       <div className="col-12 col-sm-4" key={key}>
         <div className="card">
-          <div className="admPart">
-
-            <div className="dropdown">
-              <button className="btn btn-light dropdown-toggle 100%" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gerenciar</button>
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <div className='delete-button' onClick={() => { if (window.confirm('Tem certeza que deseja excluir esta promoção?')) this.remover(key) }} >
-                  <button type="button" data-toggle="modal" className="dropdown-item" data-target="#confirm">Excluir</button>
+            <div className="card-body padim">
+              <div className="row">
+                <img className="imagemLoja" src={produto["imgLoja"]} alt="Imagem da Loja" />
+                <Link className="trataLink card-title" to={`/loja/${produto["loja"]}`} >{produto["nomeLoja"]}</Link>
+                <div className="dropdown padim2">
+                  <button className="btn btn-light dropdown-toggle 100% padimbotao" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <button className="dropdown-item " onClick={() => this.ativacao(key, produto)}>{produto["ativacao"] ? "Desativar" : "Ativar"}</button>
+                    <div className='delete-button' onClick={() => { if (window.confirm('Tem certeza que deseja excluir esta promoção?')) this.remover(key) }} >
+                      <button type="button" data-toggle="modal" className="dropdown-item" data-target="#confirm">Excluir</button>
+                    </div>
+                    <button type="button" className="dropdown-item" onClick={() => this.getThisItem(key)}>Editar</button>
+                  </div>
                 </div>
-                <button type="button" className="dropdown-item">Editar</button>
-                <button className="dropdown-item" onClick={() => this.ativacao(key, produto)}>{produto["ativacao"] ? "Desativar" : "Ativar"}</button>
               </div>
             </div>
-
+            <img className="card-img-bottom" style={{ height: '250px', width: '1fr' }} src={produto["imgProd"]} alt="Imagem do Produto" />
+            <div className="card-body">
+              <h5 className="card-title" style={{ fontWeight: 'bold' }}>{produto["nome"]}</h5>
+              <p>Descricão: {produto["descricao"]}</p>
+              {produto["preco"] ? <p className="card-text verde right" style={{ fontWeight: 'bold' }}>R$ {produto["preco"]}</p> : ""}
+              <p className="card-text right"><small className="text-muted">Valido até: {produto["validade"]}</small></p>
+            </div>
           </div>
-
-
-
-          <div className="card-body">
-            <img className="imagemLoja" src={produto["imgLoja"]} alt="Imagem da Loja" />
-            <Link className="trataLink card-title" to={`/loja/${produto["loja"]}`} >{produto["nomeLoja"]}</Link>
-          </div>
-          <img className="card-img-bottom" style={{ height: '250px', width: '1fr' }} src={produto["imgProd"]} alt="Imagem do Produto" />
-          <div className="card-body">
-            <h5 className="card-title" style={{ fontWeight: 'bold' }}>{produto["nome"]}</h5>
-
-            <p>Descricão: {produto["descricao"]}</p>
-            {produto["preco"] ? <p className="card-text verde right" style={{ fontWeight: 'bold' }}>R$ {produto["preco"]}</p> : ""}
-            <p className="card-text right"><small className="text-muted">Valido até: {produto["validade"]}</small></p>
-            
-
-          </div>
+          <div style={{marginBotton:'10px'}}></div>
         </div>
-      </div>
+        
     )
   }
 
@@ -127,24 +122,23 @@ class MinhaLoja extends Component {
           <div className="col-5">
             <h1 className="card-title">{this.state.loja["Nome"]}</h1>
             <h5 className="card-text">{this.state.loja["Endereco"]}</h5>
-            <h5 className="card-text">{this.state.loja["Email"]}</h5>
             <h5 className="card-text">{this.state.loja["Telefone"]}</h5>
             <h5 className="card-text">{this.state.loja["Celular"]}</h5>
           </div>
           <div className="col-1">
-            <button onClick={this.logout}>Sair</button>
+          <button class="btn btn-light"><img src={sair} onClick={this.logout} alt="sair"/></button>
           </div>
         </div>
 
         <br />
         <Link to='/novoproduto' className="btn btn-secondary active btn-block">Nova Promoção</Link>
         <br />
-        <p className="center">Produtos ativos</p>
+        <h5 className="center">Produtos ativos</h5>
         <div className="dropdown-divider"></div>
 
 
         <div className="conteiner text-center">
-          <div className="row">
+          <div className="card-deck">
             {
 
               Object
@@ -162,25 +156,23 @@ class MinhaLoja extends Component {
           </div>
         </div>
 
-        <div className="dropdown-divider"></div>
-        <p className="center">Produtos inativos</p>
-        <div className="dropdown-divider"></div>
-        <div className="row">
-          {
-            Object
-              .keys(this.state.produto)
-
-              .map(posicaoVet => {
-                if (this.state.produto[posicaoVet].nomeLoja === this.state.loja.Nome) {
-                  if (this.state.produto[posicaoVet].ativacao === false) {
-                    return this.listItem(posicaoVet, this.state.produto[posicaoVet])
-                  } else return ""
-                } else return ""
-              })
-          }
-        </div>
+        <br />
+        <h5 className="center">Produtos inativos</h5>
+        <br />
         <div className="conteiner text-center">
-          <div className="row">
+        <div className="card-deck">
+            {
+              Object
+                .keys(this.state.produto)
+
+                .map(posicaoVet => {
+                  if (this.state.produto[posicaoVet].nomeLoja === this.state.loja.Nome) {
+                    if (this.state.produto[posicaoVet].ativacao === false) {
+                      return this.listItem(posicaoVet, this.state.produto[posicaoVet])
+                    } else return ""
+                  } else return ""
+                })
+            }
           </div>
         </div>
       </div>
@@ -190,27 +182,27 @@ class MinhaLoja extends Component {
 
 export default MinhaLoja
 
- // handleEdit(){
-  //   var user = fire.auth().currentUser;
-  //   var uid;
-  //   if (user != null){
-  //      uid = user.uid;
-  //   }
-  //   const nomeProd = this.state.nomeProd
-  //   const tipo = this.tipo.value
-  //   const descricao = this.descricao.value
-  //   const preco = this.state.email
-  //   const validade = this.validade.value
-
-  //   base.update('Produtos/' + uid, {
-  //     data: {
-  //       nomeProd,
-  //       tipo,
-  //       descricao,
-  //       preco,
-  //       validade
-  //     }
-  //   }).catch(error => {
-  //     console.log(error)
-  //   })
-  // }
+    // getThisItem = (key) => {
+    //   console.log(key)
+    //   this.nome_razao.value = this.state.proprietarios[key].nome_razao
+    //   this.cpf_cnpj.value = this.state.proprietarios[key].cpf_cnpj
+    //   this.setState({
+    //     key: this.state.proprietarios[key].key
+    //   })
+    // }
+    // event.preventDefault()
+    // const nome_razao = this.nome_razao.value
+    // const cpf_cnpj = this.cpf_cnpj.value
+    // this.state.key ?
+    //       base.update('proprietarios/' + this.state.key, {
+    //         data: {
+    //           nome_razao,
+    //           cpf_cnpj
+    //         }
+    //       }).then(() => {
+    //         this.setState({
+    //           key: null
+    //         })
+    //       }).catch(error => {
+    //         console.log(error)
+    //       })

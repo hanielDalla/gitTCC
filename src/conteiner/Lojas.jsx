@@ -27,9 +27,9 @@ class Lojas extends Component {
         <div className="card row">
           <img className="card-img-top rounded mx-auto d-block imagemLoja2" src={loja.imgLoja} alt="Foto loja" />
           <div className="card-body">
-            <Link className="trataLink card-title" to={`/loja/${key}`} >{loja.Nome}</Link>
-            <h5 className="card-title">{loja.Email}</h5>
+            <Link className="trataLink card-title"  to={`/loja/${key}`} >{loja.Nome}</Link>
             <p className="card-text">{loja.Endereco}</p>
+            <p className="card-text">{loja.Telefone ? loja.Telefone : loja.Celular}</p>
             <Link className="btn btn-primary edit" to={`/loja/${key}`} >Visitar Loja</Link>
           </div>
         </div>
@@ -38,17 +38,8 @@ class Lojas extends Component {
   }
 
   render() {
-
     return (
-      <div className="row">
-        {/* <CardLojas nome={this.state.lojas["Nome"]}
-            email={this.state.lojas["Email"]}
-            imgLoja={this.state.lojas["imgLoja"]}
-            endereco={this.state.lojas["Endereço"]}/>
-          <CardLojas nome={this.state.lojas2["Nome"]}
-            email={this.state.lojas2["Email"]}
-            imgLoja={this.state.lojas2["imgLoja"]}
-            endereco={this.state.lojas2["Endereço"]}/>   */}
+      <div className="card-deck">
         {
           Object
             .keys(this.state.loja)
