@@ -145,7 +145,8 @@ class NovoProduto extends Component {
 
           <div className="form-group">
             <label htmlFor="descricao">Descrição(Detalhe seu produto)*</label>
-            <input ref={ref => this.descricao = ref} type="text" required="true" className="form-control" id="descricao" placeholder="Ex: 15% de desconto" />
+            <textarea  ref={ref => this.descricao = ref} maxlength="50" className="form-control" required="true" id="descricao" rows="3">Ex: tamanho, cor, tipo</textarea>
+            
           </div>
 
           <div className="form-group">

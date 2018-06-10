@@ -30,7 +30,7 @@ ReactDOM.render(
         <Route path='/logintest' component={LoginTest} />
         <Route path='/cadastrar' component={Cadastrar} />
         <Route path='/lojas' component={Lojas} />
-        <Route path='/loja/:id' component={Loja} />
+        <Route path='/loja/:name' component={Loja} />
         <Route path='/novoproduto' component={NovoProduto}/>
         <Route path='/minhaLoja' component={MinhaLoja}/>
         <Route component={ PageNotFound } />

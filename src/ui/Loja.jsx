@@ -18,7 +18,7 @@ class Loja extends Component {
         this.setState({
             isLoadding: true
         })
-        base.fetch(`Loja/${this.props.match.params.id}`, { 
+        base.fetch(`Loja/${this.props.match.params.name}`, { 
             context: this,
             state: 'loja',
             asArray: false,

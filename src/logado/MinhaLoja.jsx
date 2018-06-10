@@ -91,7 +91,7 @@ class MinhaLoja extends Component {
                     <div className='delete-button' onClick={() => { if (window.confirm('Tem certeza que deseja excluir esta promoção?')) this.remover(key) }} >
                       <button type="button" data-toggle="modal" className="dropdown-item" data-target="#confirm">Excluir</button>
                     </div>
-                    <button type="button" className="dropdown-item" onClick={() => this.getThisItem(key)}>Editar</button>
+                    <button type="button" className="dropdown-item">Editar</button>
                   </div>
                 </div>
               </div>
@@ -104,7 +104,7 @@ class MinhaLoja extends Component {
               <p className="card-text right"><small className="text-muted">Valido até: {produto["validade"]}</small></p>
             </div>
           </div>
-          <div style={{marginBotton:'10px'}}></div>
+          <div style={{height:'10px'}}></div>
         </div>
         
     )
@@ -126,7 +126,7 @@ class MinhaLoja extends Component {
             <h5 className="card-text">{this.state.loja["Celular"]}</h5>
           </div>
           <div className="col-1">
-          <button class="btn btn-light"><img src={sair} onClick={this.logout} alt="sair"/></button>
+          <button className="btn btn-light"><img src={sair} onClick={this.logout} alt="sair"/></button>
           </div>
         </div>
 

@@ -37,6 +37,7 @@ export default class Home extends Component {
                 <p className="card-text right"><small className="text-muted">Valido até: {produto["validade"]}</small></p>    
               </div>   
           </div>
+          <div style={{height:'10px'}}></div>
         </div>
         
     )}
