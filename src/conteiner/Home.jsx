@@ -25,9 +25,9 @@ export default class Home extends Component {
 
         <div className="col-12 col-sm-4" key={key} style={{marginBotton:'100px'}}>
           <div className="card">
-            <div className="card-body">
+            <div className="card-body row">
               <img className="imagemLoja" src={produto["imgLoja"]} alt="Imagem da Loja"/>
-              <Link className="trataLink card-title" to={`/loja/${produto["loja"]}`} >{produto["nomeLoja"]}</Link>  
+              <p className="trataLink card-title black"  >{produto["nomeLoja"]}</p>  
             </div>
             <img className="card-img-bottom" style={{height: '250px', width: '1fr'}} src={produto["imgProd"]} alt="Imagem do Produto"/>
               <div className="card-body">

@@ -33,8 +33,9 @@ ReactDOM.render(
         <Route path='/loja/:name' component={Loja} />
         <Route path='/novoproduto' component={NovoProduto}/>
         <Route path='/minhaLoja' component={MinhaLoja}/>
-        <Route component={ PageNotFound } />
+        <Route path='*' component={ PageNotFound } />
     </Route>
+    
 </Router>
 
 ,

@@ -148,6 +148,15 @@ negrito{
     padding-top: 0;  
     padding-bottom: 0;
 }
+.black{
+    color: #000000
+}
+.fundo-branco{
+    background-color: #ffffff;
+    padding: 1.5% 0 1.5% 0;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+}
 /* .menu {
     background: url("http://i.stack.imgur.com/dfGe4.png");
     height:35px;
