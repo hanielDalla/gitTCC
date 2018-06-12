@@ -56,6 +56,7 @@ class Lojas extends Component {
             <img className="card-img-bottom" style={{height: '250px', width: '1fr'}} src={produto["imgProd"]} alt="Imagem do Produto"/>
               <div className="card-body">
                 <h5 className="card-title" style={{fontWeight: 'bold'}}>{produto["nome"]}</h5>
+                <p className="card-text vermelho" style={{ fontWeight: 'bold' }}>{produto["desconto"]}</p>
                 <p>Descricão: {produto["descricao"]}</p>
                 {produto["preco"] ? <p className="card-text verde right" style={{ fontWeight: 'bold' }}>R$ {produto["preco"]}</p> : ""}
                 <p className="card-text right"><small className="text-muted">Valido até: {produto["validade"]}</small></p>    
@@ -76,7 +77,7 @@ class Lojas extends Component {
             <Link className="trataLink card-title"  to={`/loja/${key}`} >{loja.Nome}</Link>
             <p className="card-text">{loja.Endereco}</p>
             <p className="card-text">{loja.Telefone ? loja.Telefone : loja.Celular}</p>
-            <button className="btn btn-primary edit" type="button" onClick={() => this.mostraLoja(key)}>Ver Promoções</button>
+            <button className="btn btn-outline-primary edit" type="button" onClick={() => this.mostraLoja(key)}>Ver Promoções</button>
           </div>
         </div>
       </div>
@@ -117,11 +118,11 @@ class Lojas extends Component {
                   <h5 className="card-text">{this.state.lojaSelected.Celular}</h5>
               </div>
               <div className="col-1">
-                <button type="button" className="btn btn-primary btn-lg" onClick={() => this.voltar()}>Voltar</button>
+                <button type="button" className="btn btn-outline-primary" onClick={() => this.voltar()}>Voltar</button>
               </div>
           </div>
           <br />
-          <p className="center">Produtos ativos</p>
+          <h5 className="center verde">Produtos ativos</h5>
           <br />
           <div className="card-deck">
 

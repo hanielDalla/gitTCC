@@ -31,7 +31,7 @@ class SobreNos extends Component{
                 <br/>
             </div>
 
-            <dt className="col-sm-12" style={{ textAlign: 'center' }}>V.1.0.0</dt>
+            <dt className="col-sm-12" style={{ textAlign: 'center' }}>V.1.0.1</dt>
             </dl>
 
         </div>

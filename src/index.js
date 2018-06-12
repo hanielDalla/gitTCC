@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Lojas from './conteiner/Lojas';
-import Loja from './ui/Loja'
 import App from './App';
 import Login from './conteiner/Login'
 import Cadastrar from './conteiner/Cadastrar';
@@ -30,12 +29,10 @@ ReactDOM.render(
         <Route path='/logintest' component={LoginTest} />
         <Route path='/cadastrar' component={Cadastrar} />
         <Route path='/lojas' component={Lojas} />
-        <Route path='/loja/:name' component={Loja} />
         <Route path='/novoproduto' component={NovoProduto}/>
         <Route path='/minhaLoja' component={MinhaLoja}/>
         <Route path='*' component={ PageNotFound } />
     </Route>
-    
 </Router>
 
 ,

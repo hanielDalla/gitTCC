@@ -128,6 +128,7 @@ class MinhaLoja extends Component {
           <img className="card-img-bottom" style={{ height: '250px', width: '1fr' }} src={produto["imgProd"]} alt="Imagem do Produto" />
           <div className="card-body">
             <h5 className="card-title" style={{ fontWeight: 'bold' }}>{produto["nome"]}</h5>
+            <p className="card-text vermelho" style={{ fontWeight: 'bold' }}>{produto["desconto"]}</p>
             <p>Descricão: {produto["descricao"]}</p>
             {produto["preco"] ? <p className="card-text verde right" style={{ fontWeight: 'bold' }}>R$ {produto["preco"]}</p> : ""}
             <p className="card-text right"><small className="text-muted">Valido até: {produto["validade"]}</small></p>
@@ -161,7 +162,7 @@ class MinhaLoja extends Component {
           <br />
           <Link to='/novoproduto' className="btn btn-secondary active btn-block">Nova Promoção</Link>
           <br />
-          <h5 className="center">Produtos ativos</h5>
+          <h5 className="center verde">Produtos ativos</h5>
           <div className="dropdown-divider"></div>
 
 
@@ -185,7 +186,7 @@ class MinhaLoja extends Component {
           </div>
 
           <br />
-          <h5 className="center">Produtos inativos</h5>
+          <h5 className="center vermelho">Produtos inativos</h5>
           <br />
           <div className="conteiner text-center">
             <div className="card-deck">
