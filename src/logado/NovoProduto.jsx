@@ -68,7 +68,7 @@ class NovoProduto extends Component {
     const descricao = this.descricao.value
     const preco = this.preco.value
     const ativacao = true
-    const promocao = this.preco.value
+    const Desconto = this.Desconto.value
     const imgLoja = this.state.loja.imgLoja
     const nomeLoja = this.state.loja["Nome"]
     const validade = this.validade.value
@@ -88,7 +88,7 @@ class NovoProduto extends Component {
           descricao,
           preco,
           loja,
-          promocao,
+          Desconto,
           ativacao,
           imgLoja,
           nomeLoja,
@@ -103,7 +103,7 @@ class NovoProduto extends Component {
     this.descricao.value = ''
     this.preco.value = ''
     this.tipo.value = 0
-    this.promocao.value = ''
+    this.Desconto.value = ''
     this.file.value = null
     this.imgProd = ''
     this.setState({
@@ -147,13 +147,13 @@ class NovoProduto extends Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="promocao">Promoção</label>
-            <input ref={ref => this.promocao = ref} type="text" required="true" className="form-control" id="promocao" placeholder="% ou valor em desconto" />
+            <label htmlFor="Desconto">Desconto</label>
+            <input ref={ref => this.Desconto = ref} type="text" required="true" className="form-control" id="Desconto" placeholder="% ou valor em desconto" />
           </div>
 
           <div className="form-group">
             <label htmlFor="descricao">Descrição(Detalhe seu produto)*</label>
-            <textarea  ref={ref => this.descricao = ref} maxlength="50" className="form-control" required="true" id="descricao" rows="3">Ex: tamanho, cor, tipo</textarea>
+            <textarea  ref={ref => this.descricao = ref} maxlength="140" className="form-control" required="true" id="descricao" rows="3">Ex: tamanho, cor, tipo</textarea>
             
           </div>
 

@@ -44,6 +44,7 @@ class Login extends Component {
 
                         {this.state.error && <p>Usuário e/ou senha inválido(s)!</p>}
 
+                        <a href="/google.com">Esqueceu a senha?</a>
                         <div className="botoes"><button type="submit" onClick={this.login} className="botao btn btn-primary">Logar</button></div>
                     </form>
                     <div className="botoes">

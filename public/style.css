@@ -137,6 +137,13 @@ body{
 .right{
     text-align: right
 }
+.rightBotao{
+        justify-content: right;
+        align-items: right;
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+}
 negrito{
     font-weight: bold;
 }

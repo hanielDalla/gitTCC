@@ -61,7 +61,7 @@ class EditarProduto extends Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="descricao">Descrição(Detalhe seu produto)*</label>
+            <label htmlFor="descricao">Descrição(Detalhe seu produto ou serviço)*</label>
             <textarea  ref={ref => this.descricao = ref} maxLength="50" className="form-control" required="true" id="descricao" defaultValue={this.props.descricao} rows="3"/>
             
           </div>
@@ -77,8 +77,9 @@ class EditarProduto extends Component {
           </div>
 
           <br />
+          <br/>
 
-          <button type="submit" onClick={() => this.handleSave(this.props.kiss)} className="btn btn-primary btn-lg">Atualizar Produto</button>
+          <button type="submit" onClick={() => this.handleSave(this.props.kiss)} className="btn btn-outline-primary btn-block">Atualizar promoção</button>
 
         </form>
       </div>

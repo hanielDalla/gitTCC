@@ -16,7 +16,7 @@ class Denuncie extends Component {
                         <label style={{ fontWeight: 'bold' }}>NovApp</label>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="bugs" />
-                            <label className="form-check-label" htmlFor="bugs">Bugs.</label>
+                            <label className="form-check-label" htmlFor="bugs">Erros no sistema.</label>
                         </div>
 
                         <div className="form-check">
@@ -26,7 +26,7 @@ class Denuncie extends Component {
 
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="outro" />
-                            <label className="form-check-label" htmlFor="outro">...</label>
+                            <label className="form-check-label" htmlFor="outro">Outro(comente sobre)</label>
                         </div>
 
                         <br />
@@ -44,7 +44,7 @@ class Denuncie extends Component {
 
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="outros" />
-                            <label className="form-check-label" htmlFor="outros">...</label>
+                            <label className="form-check-label" htmlFor="outros">Outro(comente sobre)</label>
                         </div>
                         <br />
 

@@ -215,9 +215,9 @@ class MinhaLoja extends Component {
             descricao={this.state.produtoedit.descricao}
             preco={this.state.produtoedit.preco}
             kiss={this.state.key} />
-          <button type="button" className="btn btn-primary btn-lg" onClick={() => this.voltar()}>Voltar</button>
+            <br/>
+          <button type="button" className="btn btn-outline-secondary btn-block" onClick={() => this.voltar()}>Voltar</button>
         </div>
-
       )
     }
   }
